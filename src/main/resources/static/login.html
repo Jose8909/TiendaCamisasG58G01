@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Pontela Camisetas</title>
+
+    <meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="LayoutIt!">
+ 
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+  </head>
+  <body>
+
+    <div class="container-fluid mt-5">
+	<div class="row">
+		<div class="col-md-4">
+		</div>
+		<div class="col-md-4">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<img src="images/1.jpg" width="200" alt="...">
+					<!-- <img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg"> -->
+					<h3>
+						Iniciar Sesión
+					</h3>
+				</div>				
+			</div>
+			
+			<form name= "login"role="form">
+				<div class="form-group">
+					 
+					<label for="exampleInputEmail1">
+						Correo Electronico
+					</label>
+					<input type="email" class="form-control" name= "correo"id="exampleInputEmail1">
+				</div>
+				<div class="form-group">
+					 
+					<label for="exampleInputPassword1">
+						Contraseña
+					</label>
+					<input type="password" class="form-control" name="contrasena" id="exampleInputPassword1">
+				</div>
+				<div class="form-group mt-2">
+					<a onclick="accesar()" type= "submit" class="btn btn-primary">
+						Iniciar
+					</a>
+					
+				</div> 
+				
+			</form>
+		</div>
+		<div class="col-md-4">
+		</div>
+	</div>
+</div>
+
+    <!-- <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script> -->
+  </body>
+  <script>
+	function accesar(){
+		console.log ("loging...")
+		let correo = document.login.correo.value
+		let contrasena = document.login.contrasena.value
+		console.log(correo + "," + contrasena)
+		fetch("http://localhost:9011/usuarios/login?correo="+ correo +"&contrasena="+ contrasena)
+		.then (response => response.json())
+		.then(data=> {
+			if (data.msj=='ok'){
+					console.log('continuar')
+					if (data.tipo==1)
+						document.location= "index.html"
+					else
+						document.location = "principal.html"
+			}else{
+				alert(data.msj)
+			}
+		})
+		.catch(error => console.log(error))
+	}
+
+  </script>
+</html>
